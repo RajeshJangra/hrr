@@ -11,18 +11,24 @@ public class HurdleRace {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int k = in.nextInt();
-        int[] height = new int[n];
+        int[] heights = new int[n];
         for (int height_i = 0; height_i < n; height_i++) {
-            height[height_i] = in.nextInt();
+            heights[height_i] = in.nextInt();
         }
 
-        int drinksReq = findDrinksReq(n, k, height);
+        int drinksReq = findDrinksReq(k, heights);
         System.out.println(drinksReq);
     }
 
-    private static int findDrinksReq(final int n, final int k, final int[] height) {
+    private static int findDrinksReq(int k, final int[] heights) {
         int drinksReq = 0;
 
+        for (int height : heights) {
+            if (k < height) {
+                drinksReq += height - k;
+                k = height;
+            }
+        }
         return drinksReq;
     }
 }
