@@ -5,12 +5,152 @@ package com.hackerrank.datastructure.linkedlist;
  */
 public class PrintElements {
     public static void main(String[] args) {
-        Node head = new Node(2);
-        head.Insert(head, 1);
-        head.Insert(head, 5);
-        head.Insert(head, 4);
+        Node headA = new Node(1);
+        headA.Insert(headA, 2);
+        headA.Insert(headA, 3);
 
-        head.ReversePrint(head);
+        Node headB = new Node(1);
+        headB.next = headA.next.next;
+/*        headA.Insert(headA, 2);
+        headA.Insert(headA, 3);
+        headA.Insert(headA, 3);
+        headA.Insert(headA, 4);*/
+
+
+        headA.Print(headA);
+        headB.Print(headB);
+
+        // System.out.println("GetNode:" + RemoveDuplicates(headA));
+        //headA.Print(RemoveDuplicates(headA));
+        //headA.Print(MergeLists(headA, headB));
+        System.out.println(FindMergeNode(headA, headB));
+    }
+
+    static int FindMergeNode(Node headA, Node headB) {
+        Node tempA = headA;
+        Node tempB = headB;
+        while (tempB != null) {
+            if (tempA == tempB) {
+                return tempA.data;
+            }
+            tempB = tempB.next;
+        }
+        return FindMergeNode(tempA.next, headB);
+    }
+
+    static boolean hasCycle(Node head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        Node currentFaster = head.next;
+        Node currentSlower = head;
+        while (currentFaster != null && currentFaster.next != null) {
+            if (currentFaster == currentSlower) {
+                return true;
+            }
+            currentFaster = currentFaster.next.next;
+            currentSlower = currentSlower.next;
+        }
+        return false;
+    }
+
+    static Node RemoveDuplicates(Node head) {
+        Node previous = null;
+        Node current = head;
+        while (current != null) {
+            if (previous == null) {
+                previous = current;
+            } else if (current.data == previous.data) {
+                previous.next = current.next;
+            } else {
+                previous = current;
+            }
+            current = current.next;
+        }
+        return head;
+    }
+
+    static int GetNode(Node head, int n) {
+        Node currentFaster = head;
+        Node currentSlower = null;
+        int counter = 0;
+
+        while (currentFaster.next != null) {
+            if (counter++ == n) {
+                currentSlower = head;
+            }
+            currentFaster = currentFaster.next;
+            currentSlower = currentSlower != null ? currentSlower.next : currentSlower;
+        }
+
+        return currentSlower.data;
+    }
+
+    static Node MergeLists(Node headA, Node headB) {
+        Node mergedHead = null;
+        Node currentNode = null;
+        Node tempA = headA;
+        Node tempB = headB;
+        while (tempA != null || tempB != null) {
+            if (tempA != null && tempB != null) {
+                if (tempA.data <= tempB.data) {
+                    if (currentNode == null) {
+                        currentNode = tempA;
+                        mergedHead = currentNode;
+                    } else {
+                        currentNode.next = tempA;
+                        currentNode = currentNode.next;
+                    }
+                    tempA = tempA.next;
+                } else {
+                    if (currentNode == null) {
+                        currentNode = tempB;
+                        mergedHead = currentNode;
+                    } else {
+                        currentNode.next = tempB;
+                        currentNode = currentNode.next;
+                    }
+                    tempB = tempB.next;
+                }
+            } else if (tempA == null && tempB != null) {
+                if (currentNode == null) {
+                    currentNode = tempB;
+                    mergedHead = currentNode;
+                } else {
+                    currentNode.next = tempB;
+                }
+                break;
+            } else if (tempA != null && tempB == null) {
+                if (currentNode == null) {
+                    currentNode = tempA;
+                    mergedHead = currentNode;
+                } else {
+                    currentNode.next = tempA;
+                }
+                break;
+            }
+        }
+        return mergedHead;
+    }
+
+    static int CompareLists(Node headA, Node headB) {
+        int equality = 0;
+        Node tempA = headA;
+        Node tempB = headB;
+        while (tempA != null && tempB != null) {
+            if ((tempA.next != null && headB.next == null) || (tempA.next == null && tempB.next != null)) {
+                equality = 0;
+            } else {
+                equality = tempA.data == tempB.data ? 1 : 0;
+            }
+            if (equality == 0) {
+                break;
+            } else {
+                tempA = tempA.next;
+                tempB = tempB.next;
+            }
+        }
+        return equality;
     }
 }
 
@@ -24,6 +164,19 @@ class Node {
 
     public Node(final int data) {
         this.data = data;
+    }
+
+    Node Reverse(Node head) {
+        Node current = head;
+        Node previous = null;
+        Node temp;
+        while (current != null) {
+            temp = current.next;
+            current.next = previous;
+            previous = current;
+            current = temp;
+        }
+        return previous;
     }
 
     public Node Insert(Node head, int data) {
@@ -44,16 +197,16 @@ class Node {
     public void Print(Node head) {
         if (head != null) {
             System.out.println(head.data);
-        }
-        if (head.next != null) {
-            Print(head.next);
+            if (head.next != null) {
+                Print(head.next);
+            }
         }
     }
 
     void ReversePrint(Node head) {
         Node temp = head;
         String builder = "";
-        while(temp != null){
+        while (temp != null) {
             builder = temp.data + "\n" + builder;
             temp = temp.next;
         }
