@@ -3,7 +3,7 @@ package com.hackerrank.datastructure.linkedlist;
 /**
  * Created by rajeshkumar on 03/05/17.
  */
-public class PrintElements {
+public class MyLinkedList {
     public static void main(String[] args) {
         Node headA = new Node(1);
         headA.Insert(headA, 2);
