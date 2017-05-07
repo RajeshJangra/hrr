@@ -92,15 +92,6 @@ public class BinaryTreeExample {
 
     }
 
-    private List findLeftView(final Node left) {
-
-        return null;
-    }
-
-    private Object findRightView(final Node right) {
-        return null;
-    }
-
     static int height(Node root) {
         if (root == null || (root.left == null && root.right == null)) {
             return 0;
