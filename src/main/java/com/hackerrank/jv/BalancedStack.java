@@ -1,12 +1,12 @@
-package com.hackerrank;
+package com.hackerrank.jv;
 
 import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * Hello world!
+ * Created by rajeshkumar on 08/05/17.
  */
-public class App {
+public class BalancedStack {
     public static void main(String[] argh) {
         Scanner sc = new Scanner(System.in);
 
@@ -29,20 +29,10 @@ public class App {
                     break;
                 }
             }
-            if(stack.size() > 0){
+            if (stack.size() > 0) {
                 balancedStack = false;
             }
             System.out.println(balancedStack);
         }
     }
 }
-
-/*
-2
-0
-2
-10
-5
-3
-5
- */

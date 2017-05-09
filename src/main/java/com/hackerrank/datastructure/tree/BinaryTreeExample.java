@@ -15,6 +15,7 @@ public class BinaryTreeExample {
         root.right.left = new Node(6);
 
         LevelOrderQueue(root);
+
     }
 
 /*    public static void main(String[] args) {
