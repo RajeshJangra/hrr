@@ -9,7 +9,6 @@ import java.util.Stack;
 public class App {
     public static void main(String[] argh) {
         Scanner sc = new Scanner(System.in);
-
         while (sc.hasNext()) {
             boolean balancedStack = true;
             String input = sc.next();
@@ -29,7 +28,7 @@ public class App {
                     break;
                 }
             }
-            if(stack.size() > 0){
+            if (stack.size() > 0) {
                 balancedStack = false;
             }
             System.out.println(balancedStack);

@@ -1,2 +1,2 @@
 # hrr
-HRR
+Hackerrank Solutions
