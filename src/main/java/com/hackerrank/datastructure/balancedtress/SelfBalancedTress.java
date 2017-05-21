@@ -25,6 +25,10 @@ public class SelfBalancedTress {
 
         node.ht = height(node.left) > height(node.right) ? height(node.left) + 1 : height(node.right) + 1;
 
+        return rotateIfUnbalanced(node, key);
+    }
+
+    private static Node rotateIfUnbalanced(final Node node, final int key) {
         final int balance = getBalance(node);
 
         if (balance > 1 && key < node.left.val) {
@@ -44,7 +48,6 @@ public class SelfBalancedTress {
             node.right = rotateRight(node.right);
             return rotateLeft(node);
         }
-
         return node;
     }
 
@@ -81,11 +84,11 @@ public class SelfBalancedTress {
         return node != null ? node.ht : -1;
     }
 
-}
+    static class Node {
+        int val;   //Value
+        int ht;      //Height
+        Node left;   //Left child
+        Node right;   //Right child
+    }
 
-class Node {
-    int val;   //Value
-    int ht;      //Height
-    Node left;   //Left child
-    Node right;   //Right child
 }
