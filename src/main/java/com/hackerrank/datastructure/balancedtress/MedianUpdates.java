@@ -15,7 +15,6 @@ public class MedianUpdates {
     static BufferedWriter bf = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
-
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         PriorityQueue<Long> max = new PriorityQueue<>();
