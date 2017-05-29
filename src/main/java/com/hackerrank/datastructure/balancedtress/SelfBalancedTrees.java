@@ -3,7 +3,7 @@ package com.hackerrank.datastructure.balancedtress;
 /**
  * Created by rajeshkumar on 20/05/17.
  */
-public class SelfBalancedTress {
+public class SelfBalancedTrees {
     public static void main(String[] args) {
 
     }
